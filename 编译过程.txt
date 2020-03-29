@@ -1,0 +1,2 @@
+在当前文件夹是使用 cmake .命令进行生成Makefile文件
+执行 make install命令进行编译和安装
