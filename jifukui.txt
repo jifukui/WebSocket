@@ -1,0 +1,396 @@
++---abstract
+|   |   abstract.c
+|   |   private-lib-abstract.h
+|   |   README.md
+|   |   test-sequencer.c
+|   |   
+|   +---protocols
+|   |   \---smtp
+|   |           private-lib-abstract-protocols-smtp.h
+|   |           smtp-sequencer.c
+|   |           smtp.c
+|   |           
+|   \---transports
+|           raw-skt.c
+|           unit-test.c
+|           
++---core
+|       alloc.c
+|       buflist.c
+|       context.c
+|       libwebsockets.c
+|       logs.c
+|       lws_dll.c
+|       lws_dll2.c
+|       private-lib-core.h
+|       vfs.c
+|       
++---core-net
+|       adopt.c
+|       client.c
+|       close.c
+|       connect.c
+|       detailed-latency.c
+|       dummy-callback.c
+|       lws-dsh.c
+|       network.c
+|       output.c
+|       pollfd.c
+|       private-lib-core-net.h
+|       README.md
+|       sequencer.c
+|       server.c
+|       service.c
+|       socks5-client.c
+|       sorted-usec-list.c
+|       state.c
+|       stats.c
+|       vhost.c
+|       wsi-timeout.c
+|       wsi.c
+|       
++---event-libs
+|   |   private-lib-event-libs.h
+|   |   README.md
+|   |   
+|   +---glib
+|   |       glib.c
+|   |       private-lib-event-libs-glib.h
+|   |       
+|   +---libev
+|   |       libev.c
+|   |       private-lib-event-libs-libev.h
+|   |       
+|   +---libevent
+|   |       libevent.c
+|   |       private-lib-event-libs-libevent.h
+|   |       
+|   +---libuv
+|   |       libuv.c
+|   |       private-lib-event-libs-libuv.h
+|   |       
+|   \---poll
+|           poll.c
+|           private-lib-event-libs-poll.h
+|           
++---jose
+|   |   private-lib-jose.h
+|   |   README.md
+|   |   
+|   +---jwe
+|   |   |   jwe-ecdh-es-aeskw.c
+|   |   |   jwe-rsa-aescbc.c
+|   |   |   jwe-rsa-aesgcm.c
+|   |   |   jwe.c
+|   |   |   private-lib-jose-jwe.h
+|   |   |   
+|   |   \---enc
+|   |           aescbc.c
+|   |           aesgcm.c
+|   |           aeskw.c
+|   |           
+|   +---jwk
+|   |       jwk.c
+|   |       
+|   \---jws
+|           jose.c
+|           jws.c
+|           private-lib-jose-jws.h
+|           
++---misc
+|   |   base64-decode.c
+|   |   daemonize.c
+|   |   dir.c
+|   |   diskcache.c
+|   |   fsmount.c
+|   |   getifaddrs.c
+|   |   getifaddrs.h
+|   |   lejp.c
+|   |   lws-ring.c
+|   |   lws-struct-lejp.c
+|   |   lws-struct-sqlite.c
+|   |   peer-limits.c
+|   |   romfs.c
+|   |   romfs.h
+|   |   sha-1.c
+|   |   spawn.c
+|   |   
+|   +---fts
+|   |       private-lib-misc-fts.h
+|   |       README.md
+|   |       trie-fd.c
+|   |       trie.c
+|   |       
+|   +---lwsac
+|   |       cached-file.c
+|   |       lwsac.c
+|   |       private-lib-misc-lwsac.h
+|   |       README.md
+|   |       
+|   \---threadpool
+|           README.md
+|           threadpool.c
+|           
++---plat
+|   +---freertos
+|   |   |   freertos-fds.c
+|   |   |   freertos-file.c
+|   |   |   freertos-init.c
+|   |   |   freertos-misc.c
+|   |   |   freertos-pipe.c
+|   |   |   freertos-resolv.c
+|   |   |   freertos-service.c
+|   |   |   freertos-sockets.c
+|   |   |   private-lib-plat-freertos.h
+|   |   |   
+|   |   \---esp32
+|   |           esp32-helpers.c
+|   |           esp_attr.h
+|   |           
+|   +---optee
+|   |       lws-plat-optee.c
+|   |       network.c
+|   |       private-lib-plat-optee.h
+|   |       
+|   +---unix
+|   |   |   private-lib-plat-unix.h
+|   |   |   unix-caps.c
+|   |   |   unix-fds.c
+|   |   |   unix-file.c
+|   |   |   unix-init.c
+|   |   |   unix-misc.c
+|   |   |   unix-pipe.c
+|   |   |   unix-plugins.c
+|   |   |   unix-resolv.c
+|   |   |   unix-service.c
+|   |   |   unix-sockets.c
+|   |   |   
+|   |   \---android
+|   |           android-resolv.c
+|   |           
+|   \---windows
+|           private-lib-plat-windows.h
+|           windows-fds.c
+|           windows-file.c
+|           windows-init.c
+|           windows-misc.c
+|           windows-pipe.c
+|           windows-plugins.c
+|           windows-resolv.c
+|           windows-service.c
+|           windows-sockets.c
+|           
++---roles
+|   |   private-lib-roles.h
+|   |   README.md
+|   |   
+|   +---cgi
+|   |       cgi-server.c
+|   |       ops-cgi.c
+|   |       private-lib-roles-cgi.h
+|   |       
+|   +---dbus
+|   |       dbus.c
+|   |       private-lib-roles-dbus.h
+|   |       README.md
+|   |       
+|   +---h1
+|   |       ops-h1.c
+|   |       private-lib-roles-h1.h
+|   |       
+|   +---h2
+|   |       hpack.c
+|   |       http2.c
+|   |       huftable.h
+|   |       minihuf.c
+|   |       ops-h2.c
+|   |       private-lib-roles-h2.h
+|   |       
+|   +---http
+|   |   |   header.c
+|   |   |   lextable-strings.h
+|   |   |   lextable.h
+|   |   |   minilex.c
+|   |   |   parsers.c
+|   |   |   private-lib-roles-http.h
+|   |   |   
+|   |   +---client
+|   |   |       client-handshake.c
+|   |   |       client-http.c
+|   |   |       
+|   |   +---compression
+|   |   |   |   private-lib-roles-http-compression.h
+|   |   |   |   README.md
+|   |   |   |   stream.c
+|   |   |   |   
+|   |   |   +---brotli
+|   |   |   |       brotli.c
+|   |   |   |       
+|   |   |   \---deflate
+|   |   |           deflate.c
+|   |   |           
+|   |   \---server
+|   |           access-log.c
+|   |           fops-zip.c
+|   |           lejp-conf.c
+|   |           lws-spa.c
+|   |           ranges.c
+|   |           rewrite.c
+|   |           server.c
+|   |           
+|   +---listen
+|   |       ops-listen.c
+|   |       
+|   +---mqtt
+|   |   |   mqtt.c
+|   |   |   ops-mqtt.c
+|   |   |   primitives.c
+|   |   |   private-lib-roles-mqtt.h
+|   |   |   
+|   |   \---client
+|   |           client-mqtt-handshake.c
+|   |           client-mqtt.c
+|   |           
+|   +---pipe
+|   |       ops-pipe.c
+|   |       
+|   +---raw-file
+|   |       ops-raw-file.c
+|   |       
+|   +---raw-proxy
+|   |       ops-raw-proxy.c
+|   |       private-lib-roles-raw-proxy.h
+|   |       
+|   +---raw-skt
+|   |       ops-raw-skt.c
+|   |       
+|   \---ws
+|       |   client-parser-ws.c
+|       |   client-ws.c
+|       |   ops-ws.c
+|       |   private-lib-roles-ws.h
+|       |   server-ws.c
+|       |   
+|       \---ext
+|               extension-permessage-deflate.c
+|               extension-permessage-deflate.h
+|               extension.c
+|               
++---secure-streams
+|   |   policy-common.c
+|   |   policy-json.c
+|   |   private-lib-secure-streams.h
+|   |   README.md
+|   |   secure-streams-client.c
+|   |   secure-streams-process.c
+|   |   secure-streams-serialize.c
+|   |   secure-streams.c
+|   |   
+|   +---plugins
+|   |   \---ssp-h1url
+|   |           h1url.c
+|   |           
+|   +---protocols
+|   |       README.md
+|   |       ss-h1.c
+|   |       ss-h2.c
+|   |       ss-mqtt.c
+|   |       ss-ws.c
+|   |       
+|   \---system
+|       +---auth-api.amazon.com
+|       |       auth.c
+|       |       
+|       +---captive-portal-detect
+|       |       captive-portal-detect.c
+|       |       
+|       \---fetch-policy
+|               fetch-policy.c
+|               
++---system
+|   |   README.md
+|   |   system.c
+|   |   
+|   +---async-dns
+|   |       async-dns-parse.c
+|   |       async-dns.c
+|   |       private-lib-async-dns.h
+|   |       
+|   +---dhcpclient
+|   |       dhcpclient.c
+|   |       private-lib-system-dhcpclient.h
+|   |       
+|   \---ntpclient
+|           ntpclient.c
+|           
+\---tls
+    |   lws-gencrypto-common.c
+    |   lws-genec-common.c
+    |   private-lib-tls.h
+    |   private-network.h
+    |   tls-client.c
+    |   tls-network.c
+    |   tls-server.c
+    |   tls.c
+    |   
+    +---mbedtls
+    |   |   lws-genaes.c
+    |   |   lws-gencrypto.c
+    |   |   lws-genec.c
+    |   |   lws-genhash.c
+    |   |   lws-genrsa.c
+    |   |   mbedtls-client.c
+    |   |   mbedtls-server.c
+    |   |   mbedtls-ssl.c
+    |   |   mbedtls-tls.c
+    |   |   mbedtls-x509.c
+    |   |   private-lib-tls-mbedtls.h
+    |   |   
+    |   \---wrapper
+    |       +---include
+    |       |   +---internal
+    |       |   |       ssl3.h
+    |       |   |       ssl_cert.h
+    |       |   |       ssl_code.h
+    |       |   |       ssl_dbg.h
+    |       |   |       ssl_lib.h
+    |       |   |       ssl_methods.h
+    |       |   |       ssl_pkey.h
+    |       |   |       ssl_stack.h
+    |       |   |       ssl_types.h
+    |       |   |       ssl_x509.h
+    |       |   |       tls1.h
+    |       |   |       x509_vfy.h
+    |       |   |       
+    |       |   +---openssl
+    |       |   |       ssl.h
+    |       |   |       
+    |       |   \---platform
+    |       |           ssl_pm.h
+    |       |           ssl_port.h
+    |       |           
+    |       +---library
+    |       |       ssl_cert.c
+    |       |       ssl_lib.c
+    |       |       ssl_methods.c
+    |       |       ssl_pkey.c
+    |       |       ssl_stack.c
+    |       |       ssl_x509.c
+    |       |       
+    |       \---platform
+    |               ssl_pm.c
+    |               ssl_port.c
+    |               
+    \---openssl
+            lws-genaes.c
+            lws-gencrypto.c
+            lws-genec.c
+            lws-genhash.c
+            lws-genrsa.c
+            openssl-client.c
+            openssl-server.c
+            openssl-ssl.c
+            openssl-tls.c
+            openssl-x509.c
+            private-lib-tls-openssl.h
+            
